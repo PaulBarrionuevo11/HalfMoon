@@ -27,7 +27,7 @@ typedef struct
 esp_err_t init_hum_temp_sensor(
     i2c_master_bus_handle_t bus_handle,
     uint8_t sensor_addr,
-    uint32_t frequency,
+    uint32_t clock_frequency,
     sht41_t *sensor
 );
 

@@ -205,7 +205,25 @@ void app_main(void)
             }
         }
 
+        /* ---------------------------------------------
+         * Read BH1750
+         * --------------------------------------------- */
+        vTaskDelay(
+            pdMS_TO_TICKS(200)  // Prevents initial read failure 
+        );
+        esp_err_t bh1750_err =
+            bh1750_read_measurement(&bh1750);
 
+
+        if (bh1750_err == ESP_OK)
+        {
+            ESP_LOGI(
+                TAG,
+                "BH1750 luminosity: %.2f lux",
+                bh1750.lux
+            );
+        
+        }
         /* -------------------------------------------------
          * Neither sensor connected
          * ------------------------------------------------- */

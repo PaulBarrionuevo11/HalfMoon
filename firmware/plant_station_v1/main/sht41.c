@@ -55,7 +55,7 @@ static uint8_t sht41_crc8(
 esp_err_t init_hum_temp_sensor(
     i2c_master_bus_handle_t bus_handle,
     uint8_t sensor_addr,
-    uint32_t frequency,
+    uint32_t clock_frequency,
     sht41_t *sensor)
 {
     if (sensor == NULL)
@@ -66,7 +66,7 @@ esp_err_t init_hum_temp_sensor(
     i2c_device_config_t dev_cfg = {
         .dev_addr_length = I2C_ADDR_BIT_LEN_7,
         .device_address = sensor_addr,
-        .scl_speed_hz = frequency,
+        .scl_speed_hz = clock_frequency,
     };
 
     return i2c_master_bus_add_device(
